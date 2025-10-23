@@ -10,12 +10,13 @@ public class Main {
         *
         * necesitamos aqui algo que nos pida los args, un output stream para mandar args y
         * un bufferedReader para leer. Al final un waitFor y chapamos*/
-        String ruta = "C:\\Users\\Alberto\\Documents\\IntelIJ Projects\\Consola\\src";
+        String ruta = "C:\\Users\\alber\\Documents\\IntelIJ Projects\\Consola\\src";
 
         //args[0] = "dir";
 
-
-        List<String> cmd = new ArrayList<>(Arrays.asList("java", "-cp", ruta, "Consola", "dir"));
+        /*Con esto le pasamos los argumentos que queramos, simplemente ponemos aquí despues de consola los args
+        * y ya el proceso cmd.start los manda directamente como args del programa hijo*/
+        List<String> cmd = new ArrayList<>(Arrays.asList("java", "-cp", ruta, "Consola",/*ARGUMENTOS AQUÍ*/ "dir"));
         Process proceso = null;
 
         try{
@@ -24,14 +25,7 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        PrintWriter writer = new PrintWriter(proceso.getOutputStream());
         BufferedReader reader = new BufferedReader(new InputStreamReader(proceso.getInputStream()));
-
-
-        for(int i = 0; i < args.length; i++) {
-            writer.println(args[i]);
-
-        }
 
         String linea;
 
